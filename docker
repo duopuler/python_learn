@@ -1,0 +1,19 @@
+Step1: 下载并安装docker-toolbox
+
+Step2: 配置docker环境
+     i 在start.sh 第60行:
+     "${DOCKER_MACHINE}" create -d virtualbox $PROXY_ENV "${VM}"
+     修改为:
+     "${DOCKER_MACHINE}" create -d virtualbox --virtualbox-no-vtx-check $PROXY_ENV "${VM}"
+ii 将路径 C:\Program Files\Docker Toolbox 下的boot2docker.iso文件复制到 C:\Users\samsung\.docker\machine\cache 路径下
+iii 安装docker
+Step3: docker部署tensorflow
+      i 配置虚拟机环境:
+      docker-machine create tensrflow --driver virtualbox  
+      下图表示成功
+ii  输入命令:  eval $(docker-machine env tensorflow)    进行环境设置,tensorflow与虚拟机名称保持一致(标黄)
+iii 运行命令:  docker pull tensorflow/tensorflow  从docker仓库加载tensorflow镜像,默认为仓库最新版本
+step5: 启动tensorflow
+     i docker run –it tensorflow/tensorflow bash
+     ii python
+     iii import tensorflow as tf
